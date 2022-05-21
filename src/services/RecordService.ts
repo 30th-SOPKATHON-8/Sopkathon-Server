@@ -1,5 +1,6 @@
 import dayjs from "dayjs";
 
+import { Rec } from "../interfaces/record/Rec";
 import { RecordResponseDto } from "../interfaces/record/RecordResponseDto";
 import Record from "../models/Record";
 
@@ -18,20 +19,20 @@ const getRecords = async (userId: string, category: string): Promise<RecordRespo
 
     const records = await Record.find(filter).populate("userId").sort("-createdAt");
 
-    const data = records.map((r: any): RecordResponseDto => {
-      const price = (r.isXibal ? "+" : "-") + r.price.toLocaleString() + " 시발코인";
-      const createDay = dayjs(r.createdAt);
+    const data = records.map((rec: Rec): RecordResponseDto => {
+      const price = (rec.isXibal ? "+" : "-") + rec.price.toLocaleString() + " 시발코인";
+      const createDay = dayjs(rec.createdAt);
 
       const createdAt = `${createDay.month() + 1}월 ${
         createDay.date() + 1
       }일 ${createDay.hour()}:${createDay.minute()}`;
 
       const result = {
-        _id: r._id,
-        title: r.title,
-        content: r.content,
+        _id: rec._id,
+        title: rec.title,
+        content: !rec.content ? "" : rec.content,
         price,
-        isXibal: r.isXibal,
+        isXibal: rec.isXibal,
         createdAt,
       };
 

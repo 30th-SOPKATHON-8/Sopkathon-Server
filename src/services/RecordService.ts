@@ -1,5 +1,3 @@
-import dayjs from "dayjs";
-
 import config from "../config";
 import { GetTotalRecordDto } from "../interfaces/record/GetTotalRecordDto";
 import { PostRequestRecordDto } from "../interfaces/record/PostRequestRecordDto";
@@ -7,7 +5,7 @@ import { Rec } from "../interfaces/record/Rec";
 import { RecordInfo } from "../interfaces/record/RecordInfo";
 import { RecordResponseDto } from "../interfaces/record/RecordResponseDto";
 import Record from "../models/Record";
-import convertToTwoDigts from "../modules/convertToTwoDigits";
+import { convertDateFormat } from "../modules/convertDateFormat";
 
 interface Filter {
   userId: string;
@@ -33,11 +31,7 @@ const getRecords = async (userId: string, category: string): Promise<RecordRespo
 
     const data = records.map((rec: Rec): RecordResponseDto => {
       const price = (rec.isXibal ? "+" : "-") + rec.price.toLocaleString() + " Xcoin";
-      const createDay = dayjs(rec.createdAt);
-
-      const createdAt = `${createDay.month() + 1}월 ${createDay.date() + 1}일 ${convertToTwoDigts(
-        createDay.hour(),
-      )}:${convertToTwoDigts(createDay.minute())}`;
+      const createdAt = convertDateFormat(rec.createdAt);
 
       const result = {
         _id: rec._id,
@@ -100,10 +94,7 @@ const postRecord = async (record: PostRequestRecordDto) => {
 
     await rec.save();
 
-    const created = dayjs(rec.createdAt);
-    const createdAt = `${created.month() + 1}월 ${created.date() + 1}일 ${convertToTwoDigts(
-      created.hour(),
-    )}:${convertToTwoDigts(created.minute())}`;
+    const createdAt = convertDateFormat(rec.createdAt);
 
     const price = record.price.toLocaleString();
 

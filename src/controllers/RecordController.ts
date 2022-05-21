@@ -1,4 +1,4 @@
-import express, { Request, Response } from "express";
+import { Request, Response } from "express";
 
 import config from "../config";
 import { GetTotalRecordDto } from "../interfaces/record/GetTotalRecordDto";
@@ -33,7 +33,7 @@ const getRecords = async (req: Request, res: Response) => {
   }
 };
 
-const getTotalRecord = async (req: Request, res: Response): Promise<void> => {
+const getTotalRecord = async (res: Response): Promise<void> => {
   try {
     const data: GetTotalRecordDto = await RecordService.getTotalRecord(config.defaultUserId);
 

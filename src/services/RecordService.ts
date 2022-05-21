@@ -1,6 +1,8 @@
 import dayjs from "dayjs";
 
+import { GetTotalRecordDto } from "../interfaces/record/GetTotalRecordDto";
 import { Rec } from "../interfaces/record/Rec";
+import { RecordInfo } from "../interfaces/record/RecordInfo";
 import { RecordResponseDto } from "../interfaces/record/RecordResponseDto";
 import Record from "../models/Record";
 import convertToTwoDigts from "../modules/convertToTwoDigits";
@@ -8,6 +10,13 @@ import convertToTwoDigts from "../modules/convertToTwoDigits";
 interface Filter {
   userId: string;
   isXibal?: boolean;
+}
+
+interface Data {
+  nickname: string;
+  totalPrice: number;
+  xibalPrice: number;
+  sibalPrice: number;
 }
 
 const getRecords = async (userId: string, category: string): Promise<RecordResponseDto[]> => {
@@ -47,6 +56,40 @@ const getRecords = async (userId: string, category: string): Promise<RecordRespo
   }
 };
 
+const getTotalRecord = async (userId: string): Promise<GetTotalRecordDto> => {
+  try {
+    const records: RecordInfo[] = await Record.find({ userId });
+
+    const data: Data = {
+      nickname: "오내시",
+      totalPrice: 0,
+      xibalPrice: 0,
+      sibalPrice: 0,
+    };
+
+    records.map((record: RecordInfo) => {
+      if (record.isXibal) {
+        data.xibalPrice += record.price;
+      } else {
+        data.sibalPrice -= record.price;
+      }
+    });
+
+    data.totalPrice = data.xibalPrice + data.sibalPrice;
+
+    return {
+      ...data,
+      totalPrice: data.totalPrice.toLocaleString(),
+      xibalPrice: data.xibalPrice.toLocaleString(),
+      sibalPrice: data.sibalPrice.toLocaleString(),
+    };
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
 export default {
   getRecords,
+  getTotalRecord,
 };

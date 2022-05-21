@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { validationResult } from "express-validator";
 
 import config from "../config";
-import { GetTotalRecordDto, PostResponseDto } from "../interfaces/record";
+import { GetTotalRecordDto } from "../interfaces/record";
 import categoryList from "../modules/categoryList";
 import message from "../modules/responseMessage";
 import statusCode from "../modules/statusCode";

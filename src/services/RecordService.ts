@@ -3,6 +3,7 @@ import dayjs from "dayjs";
 import { Rec } from "../interfaces/record/Rec";
 import { RecordResponseDto } from "../interfaces/record/RecordResponseDto";
 import Record from "../models/Record";
+import convertToTwoDigts from "../modules/convertToTwoDigits";
 
 interface Filter {
   userId: string;
@@ -23,9 +24,9 @@ const getRecords = async (userId: string, category: string): Promise<RecordRespo
       const price = (rec.isXibal ? "+" : "-") + rec.price.toLocaleString() + " 시발코인";
       const createDay = dayjs(rec.createdAt);
 
-      const createdAt = `${createDay.month() + 1}월 ${createDay.date() + 1}일 ${("0" + createDay.hour()).slice(-2)}:${(
-        "0" + createDay.minute()
-      ).slice(-2)}`;
+      const createdAt = `${createDay.month() + 1}월 ${createDay.date() + 1}일 ${convertToTwoDigts(
+        createDay.hour(),
+      )}:${convertToTwoDigts(createDay.minute())}`;
 
       const result = {
         _id: rec._id,

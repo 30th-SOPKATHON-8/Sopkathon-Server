@@ -1,17 +1,26 @@
+import { GetTotalRecordDto } from "../interfaces/record/GetTotalRecordDto";
+import { RecordInfo } from "../interfaces/record/RecordInfo";
 import Record from "../models/Record";
 
-const getTotalRecord = async (userId: string) => {
-  try {
-    const records = await Record.find({ userId });
+interface Data {
+  nickname: string;
+  totalPrice: number;
+  xibalPrice: number;
+  sibalPrice: number;
+}
 
-    const data = {
+const getTotalRecord = async (userId: string): Promise<GetTotalRecordDto> => {
+  try {
+    const records: RecordInfo[] = await Record.find({ userId });
+
+    const data: Data = {
       nickname: "오내시",
       totalPrice: 0,
       xibalPrice: 0,
       sibalPrice: 0,
     };
 
-    records.map((record) => {
+    records.map((record: RecordInfo) => {
       if (record.isXibal) {
         data.xibalPrice += record.price;
       } else {

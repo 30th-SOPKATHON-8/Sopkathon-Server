@@ -1,5 +1,5 @@
 const util = {
-  success: (status: number, message: string, data?: any) => {
+  success: (status: number, message: string, data?: object) => {
     return {
       status,
       success: true,
@@ -7,7 +7,7 @@ const util = {
       data,
     };
   },
-  fail: (status: number, message: string, data?: any) => {
+  fail: (status: number, message: string) => {
     return {
       status,
       success: false,

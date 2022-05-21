@@ -4,7 +4,7 @@ export interface RecordInfo {
   price: number;
   isXibal: boolean;
   title: string;
-  content: string;
+  content?: string;
   createdAt: Date;
   userId: mongoose.Types.ObjectId;
 }

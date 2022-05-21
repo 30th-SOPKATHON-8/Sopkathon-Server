@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
 
-import { PostResponseDto } from "../interfaces/record";
+import config from "../config";
 import { GetTotalRecordDto } from "../interfaces/record/GetTotalRecordDto";
 import { PostRequestRecordDto } from "../interfaces/record/PostRequestRecordDto";
 import { Rec } from "../interfaces/record/Rec";
@@ -95,13 +95,22 @@ const postRecord = async (record: PostRequestRecordDto) => {
   try {
     const rec = new Record({
       ...record,
+      userId: config.defaultUserId,
     });
 
     await rec.save();
 
+    const created = dayjs(rec.createdAt);
+    const createdAt = `${created.month() + 1}월 ${created.date() + 1}일 ${convertToTwoDigts(
+      created.hour(),
+    )}:${convertToTwoDigts(created.minute())}`;
+
+    const price = record.price.toLocaleString();
+
     const data = {
-      ...rec,
-      // createdAt: new Date("sd"),
+      ...record,
+      price: `${record.isXibal ? "+" : "-"}${price}`,
+      createdAt,
     };
 
     return data;

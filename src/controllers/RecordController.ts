@@ -1,0 +1,23 @@
+import { Request, Response } from "express";
+
+import config from "../config";
+import message from "../modules/responseMessage";
+import statusCode from "../modules/statusCode";
+import util from "../modules/util";
+import RecordService from "../services/RecordService";
+
+const getTotalRecord = async (req: Request, res: Response) => {
+  try {
+    const data = await RecordService.getTotalRecord(config.defaultUserId);
+
+    res.status(statusCode.OK).send(util.success(statusCode.OK, message.READ_INQUIRY_SUCCESS, data));
+  } catch (error) {
+    res
+      .status(statusCode.INTERNAL_SERVER_ERROR)
+      .send(util.fail(statusCode.INTERNAL_SERVER_ERROR, message.INTERNAL_SERVER_ERROR));
+  }
+};
+
+export default {
+  getTotalRecord,
+};

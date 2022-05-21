@@ -4,6 +4,7 @@ import RecordController from "../controllers/RecordController";
 
 const router: Router = Router();
 
-router.get("/", RecordController.getTotalRecord);
+router.get("/", RecordController.getRecords);
+router.get("/total", RecordController.getTotalRecord);
 
 export default router;

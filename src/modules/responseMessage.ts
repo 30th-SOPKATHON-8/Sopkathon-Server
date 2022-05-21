@@ -14,6 +14,8 @@ const message = {
   READ_TOTAL_RECORDS_SUCCESS: "총 시발비용 조회 성공",
   READ_RECORDS_SUCCESS: "시발비용 리스트 조회 성공",
   CREATE_RECORD_SUCCESS: "시발비용 추가 성공",
+  INVALID_CATEGORY: "올바르지 않은 category 값 입니다",
+  GET_RECORDS_SUCCESS: "기록을 불러왔습니다",
 };
 
 export default message;

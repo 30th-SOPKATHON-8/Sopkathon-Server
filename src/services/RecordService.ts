@@ -3,9 +3,20 @@ import dayjs from "dayjs";
 import { RecordResponseDto } from "../interfaces/record/RecordResponseDto";
 import Record from "../models/Record";
 
-const getRecords = async (userId: string): Promise<RecordResponseDto[]> => {
+interface Filter {
+  userId: string;
+  isXibal?: boolean;
+}
+
+const getRecords = async (userId: string, category: string): Promise<RecordResponseDto[]> => {
   try {
-    const records = await Record.find({ userId }).populate("userId");
+    let filter: Filter = { userId };
+
+    if (category !== "all") {
+      filter = { userId, isXibal: category === "bad" };
+    }
+
+    const records = await Record.find(filter).populate("userId");
 
     const data = records.map((r: any): RecordResponseDto => {
       const price = r.isXibal ? "+ " : "- " + r.price.toLocaleString();

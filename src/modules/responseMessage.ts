@@ -10,15 +10,10 @@ const message = {
   READ_USER_SUCCESS: "유저 조회 성공",
   CREATE_USER_SUCCESS: "유저 생성 성공",
 
-  // 주문
-  CREATE_ORDER_SUCCESS: "리뷰 작성 성공",
-  READ_ORDER_SUCCESS: "리뷰 조회 성공",
-
-  // 문의
-  CREATE_INQUIRY_SUCCESS: "문의 생성 성공",
-  CREATE_INQUIRY_COMMENT_SUCCESS: "문의 작성 성공",
-  READ_INQUIRY_SUCCESS: "문의 조회 성공",
-  DELETE_INQUIRY_SUCCESS: "문의 삭제 성공",
+  // 기록
+  READ_TOTAL_RECORDS_SUCCESS: "총 시발비용 조회 성공",
+  READ_RECORDS_SUCCESS: "시발비용 리스트 조회 성공",
+  CREATE_RECORD_SUCCESS: "시발비용 추가 성공",
 };
 
 export default message;

@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { MongooseError } from "mongoose";
 
 import config from "../config";
 
@@ -9,9 +9,10 @@ const connectDB = async () => {
     mongoose.set("autoCreate", true);
 
     console.log("Mongoose Connected ...");
-  } catch (err: any) {
-    console.error(err.message);
-    process.exit(1);
+  } catch (error) {
+    if (error instanceof MongooseError) {
+      process.exit(1);
+    }
   }
 };
 

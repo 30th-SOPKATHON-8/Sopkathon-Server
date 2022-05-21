@@ -34,6 +34,7 @@ const getRecords = async (req: Request, res: Response) => {
 };
 
 const getTotalRecord = async (req: Request, res: Response): Promise<void> => {
+  console.log(req);
   try {
     const data: GetTotalRecordDto = await RecordService.getTotalRecord(config.defaultUserId);
 

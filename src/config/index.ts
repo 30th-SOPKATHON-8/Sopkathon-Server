@@ -21,4 +21,9 @@ export default {
    * MongoDB URI
    */
   mongoURI: process.env.MONGODB_URI as string,
+
+  /**
+   * Default User Id
+   */
+  defaultUserId: process.env.USER_ID as string,
 };

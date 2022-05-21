@@ -6,17 +6,10 @@ const userSchema = new mongoose.Schema({
   userId: {
     type: String,
     required: true,
-    unique: true,
   },
-  userEmail: {
+  nickname: {
     type: String,
     required: true,
-    unique: true,
-  },
-  userName: {
-    type: String,
-    required: true,
-    unique: true,
   },
 });
 

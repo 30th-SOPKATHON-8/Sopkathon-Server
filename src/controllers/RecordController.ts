@@ -53,9 +53,9 @@ const createRecord = async (req: Request, res: Response) => {
     return res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, message.BAD_REQUEST));
   }
   try {
-    const data: PostResponseDto = await RecordService.postRecord(req.body);
+    const data = await RecordService.postRecord(req.body);
 
-    res.status(statusCode.OK).send(util.success(statusCode.OK, message.READ_TOTAL_RECORDS_SUCCESS, data));
+    res.status(statusCode.CREATED).send(util.success(statusCode.CREATED, message.CREATE_RECORD_SUCCESS, data));
   } catch (error) {
     res
       .status(statusCode.INTERNAL_SERVER_ERROR)

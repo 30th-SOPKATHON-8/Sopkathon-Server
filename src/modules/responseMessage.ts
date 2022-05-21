@@ -7,7 +7,8 @@ const message = {
   INTERNAL_SERVER_ERROR: "서버 내부 오류",
 
   // Record
-  INVALID_CATEGORY: "올바르지 않은 category 값 입니다.",
+  INVALID_CATEGORY: "올바르지 않은 category 값 입니다",
+  GET_RECORDS_SUCCESS: "기록을 불러왔습니다",
 };
 
 export default message;

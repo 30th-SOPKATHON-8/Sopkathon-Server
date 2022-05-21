@@ -30,7 +30,7 @@ const getRecords = async (userId: string, category: string): Promise<RecordRespo
     const records = await Record.find(filter).populate("userId").sort("-createdAt");
 
     const data = records.map((rec: Rec): RecordResponseDto => {
-      const price = (rec.isXibal ? "+" : "-") + rec.price.toLocaleString() + " 시발코인";
+      const price = (rec.isXibal ? "+" : "-") + rec.price.toLocaleString() + " Xcoin";
       const createdAt = convertDateFormat(rec.createdAt);
 
       const result = {

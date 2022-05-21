@@ -11,7 +11,9 @@
 
 # 개발 담당 부분
 
-나중에 작성
+유저 total record 조회: 김소령
+유저 record list 조회: 영권
+유저 record 추가: 김소령
 
 # 코드 컨벤션
 

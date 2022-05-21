@@ -1,6 +1,8 @@
 import dayjs from "dayjs";
 
+import { PostResponseDto } from "../interfaces/record";
 import { GetTotalRecordDto } from "../interfaces/record/GetTotalRecordDto";
+import { PostRequestRecordDto } from "../interfaces/record/PostRequestRecordDto";
 import { Rec } from "../interfaces/record/Rec";
 import { RecordInfo } from "../interfaces/record/RecordInfo";
 import { RecordResponseDto } from "../interfaces/record/RecordResponseDto";
@@ -89,7 +91,28 @@ const getTotalRecord = async (userId: string): Promise<GetTotalRecordDto> => {
   }
 };
 
+const postRecord = async (record: PostRequestRecordDto) => {
+  try {
+    const rec = new Record({
+      ...record,
+    });
+
+    await rec.save();
+
+    const data = {
+      ...rec,
+      // createdAt: new Date("sd"),
+    };
+
+    return data;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
 export default {
   getRecords,
   getTotalRecord,
+  postRecord,
 };

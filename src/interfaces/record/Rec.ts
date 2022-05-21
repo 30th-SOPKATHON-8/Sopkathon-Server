@@ -1,5 +1,5 @@
 import { RecordInfo } from "./RecordInfo";
 
-export interface Record extends RecordInfo {
+export interface Rec extends RecordInfo {
   _id: string;
 }

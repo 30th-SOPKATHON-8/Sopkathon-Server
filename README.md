@@ -5,6 +5,8 @@
 > 그 영수증은 나중에 가계부로 만들어줍니다. <br>
 > 감정의 기록을 보면서 나의 시발(시작)을 위해 어떤 행동을 할 수 있을지, 나만의 감정 참고서가 될 수 있습니다. <br>
 
+![스크린샷 2022-05-22 오후 8 52 11](https://user-images.githubusercontent.com/39653584/169704024-7bd98865-76fa-4f5f-bd4a-7379707543eb.png)
+
 <br>
 
 ## 🌟 Server Developer
@@ -12,7 +14,6 @@
 | [영권](https://github.com/youngkwon02) | [소령](https://github.com/soryeongk) |
 | :----------------------------------------: | :---------------------------------: |
 | <img src="https://avatars.githubusercontent.com/u/39653584?v=4" width="300px"> | <img src="https://avatars.githubusercontent.com/u/40630964?v=4" width="300px"> |
-|              기록 전체조회 API 구현            |         Total 기록 조회, 기록 추가 API 구현          |
 
 <br>
 
